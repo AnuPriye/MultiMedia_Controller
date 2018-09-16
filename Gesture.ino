@@ -2,9 +2,8 @@
 #include <I2Cdev.h>
 #include <MPU6050.h>
 #include <SoftwareSerial.h>
-int lc=4,rc=7,red=3,blue=5,green=6,tab=8,mode=9;//Left click on pin 4.Right Click on pin 7.Rgb on pin 3 5 6.
-SoftwareSerial HC12(10,11);
-MPU6050 mpu;
+int lc=4,rc=7,red=3,blue=5,green=6,tab=8,mode=9; //Left click on pin 4.Right Click on pin 7.Rgb on pin 3 5 6.
+SoftwareSerial HC12(10,11); // TX pin of HC-12 to pin 10 of Arduino and RX pin of HC-12 to pin 11 or Arduino.
 int16_t ax, ay, az, gx, gy, gz;
 int m,vx,vy,lcv=0,rcv=0,modev,tabs,modec=0;
 
@@ -12,23 +11,19 @@ void mpccontrol()
 {
   HC12.println("#");
   if(digitalRead(lc)==HIGH)
-  {
-  lcv=0;
-  }
+   lcv=0;
   else
-  {
-  lcv=1;
-  }
+   lcv=1;
   if(digitalRead(rc)==HIGH)
-  lcv=0;
+   lcv=0;
   else
-  lcv=1;
-HC12.print("X");
+   lcv=1;
+  HC12.print("X");
   HC12.print(vx);
   HC12.print("Y");
   HC12.print(vy);
   HC12.print("L");
-  HC12.print(lcv);//1 means pressed
+  HC12.print(lcv);
   HC12.print("R");
   HC12.print(rcv);
   HC12.println();
@@ -39,27 +34,19 @@ void mousecontrol()
 {
   HC12.println("@");
   if(digitalRead(lc)==HIGH)
-  {
-  lcv=0;
-  }
+   lcv=0;
   else
-  {
-  lcv=1;
-  }
+   lcv=1;
   if(digitalRead(rc)==HIGH)
-  {
-  rcv=0;
-  }
+   rcv=0;
   else
-  {
-  rcv=1;
-  }
+   rcv=1;
   HC12.print("X");
   HC12.print(vx);
   HC12.print("Y");
   HC12.print(vy);
   HC12.print("L");
-  HC12.print(lcv);//1 means pressed
+  HC12.print(lcv);
   HC12.print("R");
   HC12.print(rcv);
   HC12.println();
@@ -70,27 +57,19 @@ void pptcontrol()
 {
   HC12.println("!");
   if(digitalRead(lc)==HIGH)
-  {
-  lcv=0;
-  }
+   lcv=0;
   else
-  {
-  lcv=1;
-  }
+   lcv=1;
   if(digitalRead(rc)==HIGH)
-  {
-  rcv=0;
-  }
+   rcv=0;
   else
-  {
-  rcv=1;
-  }
+   rcv=1;
   HC12.print("X");
   HC12.print(vx);
   HC12.print("Y");
   HC12.print(vy);
   HC12.print("L");
-  HC12.print(lcv);//1 means pressed
+  HC12.print(lcv);
   HC12.print("R");
   HC12.print(rcv);
   HC12.println();
